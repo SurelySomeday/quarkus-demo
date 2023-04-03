@@ -1,0 +1,15 @@
+# datasource configuration
+quarkus:
+  datasource:
+    db-kind:  mysql
+    username: root
+    password: Root123456
+    jdbc:
+      url: jdbc:mysql://localhost:3306/quarkus_demo
+    devservices:
+      enabled: false
+  hibernate-orm:
+    database:
+      generation: drop-and-create
+    log:
+      sql: true
