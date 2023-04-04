@@ -1,15 +1,36 @@
 # datasource configuration
+smallrye:
+  jwt:
+    sign:
+      key:
+        location: privateKey.pem
+mp:
+  jwt:
+    verify:
+      issuer: https://example.com/issuer
+      publickey:
+        location: publicKey.pem
+
 quarkus:
+  native:
+    resources:
+      includes: publicKey.pem
   datasource:
     db-kind:  mysql
     username: root
     password: Root123456
     jdbc:
-      url: jdbc:mysql://localhost:3306/quarkus_demo
+      url: jdbc:mysql://localhost:33906/quarkus_demo
     devservices:
-      enabled: false
+      enabled: true
+      username: root
+      password: Root123456
+      db-name: quarkus_demo
+      port: 33906
   hibernate-orm:
     database:
       generation: drop-and-create
     log:
       sql: true
+  http:
+    port: 8090
