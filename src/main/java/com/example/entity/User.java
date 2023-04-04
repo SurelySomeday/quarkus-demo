@@ -1,7 +1,7 @@
 package com.example.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import io.quarkus.hibernate.reactive.panache.PanacheEntityBase;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class User extends PanacheEntityBase {
 
     public String pass;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JsonManagedReference
     public List<Role> roles = new ArrayList<>();
 

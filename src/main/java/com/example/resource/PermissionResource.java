@@ -3,6 +3,7 @@ package com.example.resource;
 import com.example.dto.UserParameters;
 import com.example.entity.Role;
 import com.example.entity.User;
+import io.smallrye.mutiny.Uni;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
@@ -20,7 +21,7 @@ public class PermissionResource {
     @GET
     @Path("")
     @RolesAllowed("anno")
-    public List<User> all() {
+    public Uni<List<User>> all() {
         return User.findAll().list();
     }
 

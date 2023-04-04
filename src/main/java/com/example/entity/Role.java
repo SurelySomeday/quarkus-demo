@@ -1,7 +1,7 @@
 package com.example.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import io.quarkus.hibernate.reactive.panache.PanacheEntityBase;
 
 import javax.persistence.*;
 import java.util.List;
@@ -19,7 +19,7 @@ public class Role extends PanacheEntityBase {
     @GeneratedValue(generator = "roleSeq")
     public Long id;
 
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "roles",fetch = FetchType.EAGER)
     @JsonBackReference
     public List<User> users;
 

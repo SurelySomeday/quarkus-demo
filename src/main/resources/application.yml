@@ -4,6 +4,8 @@ smallrye:
     sign:
       key:
         location: privateKey.pem
+    token:
+      header: Authorization
 mp:
   jwt:
     verify:
@@ -19,10 +21,10 @@ quarkus:
     db-kind:  mysql
     username: root
     password: Root123456
-    jdbc:
-      url: jdbc:mysql://localhost:33906/quarkus_demo
+    reactive:
+      url: mysql://localhost:3306/quarkus_demo
     devservices:
-      enabled: true
+      enabled: false
       username: root
       password: Root123456
       db-name: quarkus_demo
@@ -34,3 +36,10 @@ quarkus:
       sql: true
   http:
     port: 8090
+    auth:
+      permission:
+        bearer:
+          paths: /**
+          policy: authenticated
+          auth-mechanism: bearer
+      proactive: false

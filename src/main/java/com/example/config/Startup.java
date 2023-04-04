@@ -7,6 +7,7 @@ import io.quarkus.runtime.StartupEvent;
 import javax.enterprise.event.Observes;
 import javax.inject.Singleton;
 import javax.transaction.Transactional;
+import java.time.Duration;
 
 /**
  * @author yanxin
@@ -17,14 +18,14 @@ public class Startup {
     @Transactional(rollbackOn = Exception.class)
     public void loadUsers(@Observes StartupEvent evt) {
         // reset and load all test users
-        User.deleteAll();
+        User.deleteAll().await().atMost(Duration.ofMinutes(5));
         User user=new User();
         user.name="admin";
         user.pass="123456";
         Role role=new Role();
         role.role="anno";
-        Role.persist(role);
+        role.persistAndFlush().await().atMost(Duration.ofMinutes(5));
         user.roles.add(role);
-        User.persist(user);
+        user.persistAndFlush().await().atMost(Duration.ofMinutes(5));
     }
 }
