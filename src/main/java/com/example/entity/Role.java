@@ -10,6 +10,12 @@ import java.util.List;
  * @author yanxin
  * @Description:
  */
+@NamedEntityGraph(
+        name = "role.all",
+        attributeNodes =  {
+                @NamedAttributeNode("users")
+        }
+)
 @Entity
 @Cacheable
 public class Role extends PanacheEntityBase {

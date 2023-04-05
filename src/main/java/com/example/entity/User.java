@@ -12,6 +12,12 @@ import java.util.List;
  * @Description:
  */
 @Table(name = "test_user")
+@NamedEntityGraph(
+        name = "user.all",
+        attributeNodes =  {
+                @NamedAttributeNode("roles")
+        }
+)
 @Entity
 @Cacheable
 public class User extends PanacheEntityBase {

@@ -12,8 +12,24 @@ mp:
       issuer: https://example.com/issuer
       publickey:
         location: publicKey.pem
-
+      consul-config:
+        properties-value-keys=config/${quarkus:
+          application:
+            name}:
 quarkus:
+  application:
+    name: quarkus-demo
+  consul-config:
+    properties-value-keys: ${quarkus.application.name}
+    enabled: true
+  stork:
+    my-service:
+      service-discovery:
+        type: consul
+        consul-host: localhost
+        consul-port: 8500
+      load-balancer:
+        type: round-robin
   native:
     resources:
       includes: publicKey.pem
@@ -43,3 +59,6 @@ quarkus:
           policy: authenticated
           auth-mechanism: bearer
       proactive: false
+consul:
+  host: localhost
+  port: 8500
