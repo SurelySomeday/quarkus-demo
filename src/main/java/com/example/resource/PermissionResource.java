@@ -13,12 +13,20 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * 权限
+ */
 @Path("/permission")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class PermissionResource {
 
 
+    /**
+     * anno访问
+     *
+     * @return {@link com.example.entity.User}
+     */
     @GET
     @Path("")
     @RolesAllowed("anno")
@@ -26,6 +34,10 @@ public class PermissionResource {
         return User.findAll().list();
     }
 
+    /**
+     * error
+     *
+     */
     @GET
     @Path("/error")
     @PermitAll

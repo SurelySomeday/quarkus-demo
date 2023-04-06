@@ -47,9 +47,12 @@ quarkus:
       port: 33906
   hibernate-orm:
     database:
-      generation: drop-and-create
+      #generation: drop-and-create
+      generation: update
     log:
       sql: true
+      queries-slower-than-ms: 100
+
   http:
     port: 8090
     auth:
@@ -59,6 +62,7 @@ quarkus:
           policy: authenticated
           auth-mechanism: bearer
       proactive: false
+    cors: false
 consul:
   host: localhost
   port: 8500

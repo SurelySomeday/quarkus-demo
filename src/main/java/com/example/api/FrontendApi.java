@@ -9,16 +9,17 @@ import javax.enterprise.context.RequestScoped;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import javax.inject.Provider;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 /**
- * @author yanxin
- * @Description:
+ * 远程调用
  */
-@RequestScoped
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 @Path("/api")
 public class FrontendApi {
 
@@ -30,15 +31,21 @@ public class FrontendApi {
     @Inject
     private Vertx vertx;
 
+    /**
+     * 远程调用
+     * @return String
+     */
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
     public String invoke() {
         return service.get();
     }
 
+    /**
+     * 获取consul参数
+     * @return String
+     */
     @GET
     @Path("/name")
-    @Produces(MediaType.TEXT_PLAIN)
     public String name() {
         return name.get();
     }
