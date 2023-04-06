@@ -3,6 +3,7 @@ package com.example.service;
 import com.example.dto.UserParameters;
 import com.example.entity.Role;
 import com.example.entity.User;
+import com.example.repository.RoleRepository;
 import com.example.repository.UserRepository;
 import io.smallrye.mutiny.Uni;
 import org.slf4j.Logger;
@@ -24,6 +25,8 @@ public class UserService {
 
     @Inject
     UserRepository userRepository;
+    @Inject
+    RoleRepository roleRepository;
 
     public Uni<List<User>> all(){
         return userRepository.findAll().list();
@@ -43,8 +46,14 @@ public class UserService {
         });
     }
 
+    public Uni<Role> getUserRole(Long id,Long roleId){
+        return roleRepository.findUserRole(id,roleId);
+    }
+
+
+
     public Uni<List<User>> findByParameters(UserParameters userParameters){
-        return userRepository.find("from User where name=?1",userParameters.name).list();
+        return userRepository.findByParameters(userParameters);
     }
 
     public Uni<User> add(User user){

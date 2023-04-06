@@ -1,0 +1,12 @@
+{
+  "serverUrl": "http://localhost:8090/",
+  "outPath": "src/main/resources/META-INF/resources",
+  "isStrict": false,
+  "allInOne": true,
+  "coverOld": true,
+  "createDebugPage": true,
+  "style":"xt256",
+  "packageFilters": "",
+  "projectName": "quarkus-demo",
+  "framework": "JAX-RS"
+}
